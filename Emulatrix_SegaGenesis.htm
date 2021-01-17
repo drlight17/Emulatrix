@@ -58,8 +58,19 @@
 				settings_file += "input_player1_r = e\n";
 
 				// SETTING THE KEY FOR SOUND TOGGLE
-				settings_file += "input_audio_mute = f9\n";
+				settings_file += "input_audio_mute = "+ emptyValue + "\n";
 
+				//drlight
+				settings_file += "input_enable_hotkey = shift\n"; //for combination with shift key
+				settings_file += "input_enable_hotkey_btn = 8\n"; //for combination with gamepad back button
+				// SETTING THE KEY FOR SAVE STATE
+				settings_file += "input_save_state = f5\n"; //save with F5 key + hotkey above
+				settings_file += "input_save_state_btn = 10\n"; //save with gamepad LStick + hotkey_btn above
+				
+				// SETTING THE KEY FOR LOAD STATE
+				settings_file += "input_load_state = f9\n"; //load with F9 key + hotkey above
+				settings_file += "input_load_state_btn = 11\n"; //load with gamepad RStick + hotkey_btn above
+				
 				// SETTING THE KEY FOR RELOADING THE GAME
 				settings_file += "input_reset = f10\n";
 
@@ -68,8 +79,8 @@
 				settings_file += "input_hold_fast_forward = " + emptyValue + "\n";
 				settings_file += "input_toggle_slowmotion = " + emptyValue + "\n";
 				settings_file += "input_hold_slowmotion = " + emptyValue + "\n";
-				settings_file += "input_save_state = " + emptyValue + "\n";
-				settings_file += "input_load_state = " + emptyValue + "\n";
+				//settings_file += "input_save_state = " + emptyValue + "\n";
+				//settings_file += "input_load_state = " + emptyValue + "\n";
 				settings_file += "input_toggle_fullscreen = " + emptyValue + "\n";
 				settings_file += "input_exit_emulator = " + emptyValue + "\n";
 				settings_file += "input_state_slot_increase = " + emptyValue + "\n";
@@ -278,13 +289,15 @@
 				settings_file += "input_player5_turbo = " + emptyValue + "\n";
 
 				// SETTING THE VIDEO CONFIGURATION
-				container_width = document.getElementById("container").offsetWidth;
+				// fixed aspect ration for 4:3
+				//container_width = document.getElementById("container").offsetWidth;
 				container_height = document.getElementById("container").offsetHeight;
+				container_width = container_height/3*4;
 				settings_file += "video_vsync = true\n";
-				settings_file += "video_scale = 1\n";
+				settings_file += "video_scale = 0\n";
 				settings_file += "video_window_x = " + container_width + "\n";
 				settings_file += "video_window_y = " + container_height + "\n";
-				settings_file += "aspect_ratio_index = 23\n";
+				settings_file += "aspect_ratio_index = 22\n";
 				settings_file += "custom_viewport_width = " + container_width + "\n";
 				settings_file += "custom_viewport_height = " + container_height + "\n";
 				settings_file += "custom_viewport_x = 0\n";
@@ -296,7 +309,7 @@
 				// HIDING THE NOTIFICATION MESSAGES
 				settings_file += "video_message_pos_x = -100\n";
 				settings_file += "video_message_pos_y = -100\n";
-				settings_file += "menu_enable_widgets = false\n";
+				settings_file += "menu_enable_widgets = true\n";
 
 				// CREATING THE FILE WITH THE CONFIGURATION
 				FS.createDataFile("/home/web_user/retroarch/userdata", "retroarch.cfg", settings_file, true, true);
@@ -356,8 +369,10 @@
 				{
 				try
 					{
-					container_width = document.getElementById("container").offsetWidth;
+					//container_width = document.getElementById("container").offsetWidth;
+					// fixed aspect ration for 4:3
 					container_height = document.getElementById("container").offsetHeight;
+					container_width = container_height/3*4;
 					Module.setCanvasSize(container_width,container_height,true);
 					}
 					catch(err)
